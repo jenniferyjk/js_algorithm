@@ -294,9 +294,7 @@ if (조건문) {
 실행 code // if-else 이후 실행
 ```
 
-
-
-#### 3항 연산자
+###### 3항연산자
 
 - if-else 대체 가능
 
@@ -331,5 +329,142 @@ switch (ch) {
 }
 ```
 
+---
 
 
+
+### 7. 반복문(loop)
+
+#### for 반복문
+
+- 선언문, 조건문, 증감문 형태로 이루어짐 (각 자리에 공백 입력 가능)
+- 조건문이 fail 되기 전까지 코드 블록을 반복 수행
+
+```javascript
+for (Init Expression; Test Expression; Update Expression) {
+    // statement block
+}
+```
+
+##### for in 반복문
+
+- 객체의 key, value 형태를 반복하여 수행
+
+- 객체의 키 개수만큼 반복
+
+  ```javascript
+  for (key in object) {
+      //실행 code
+  }
+  
+  const profile = {name : "John", age : "25"};
+  
+  let text = "";
+  for (let x in profile) {
+      text += profile[x];
+  }
+  cosole.log(text);
+  ```
+
+##### for .. of 반복문
+
+- collection객체 자체가 Symbol.iterator 속성을 가지고 있어야 동작 ㄱ가능 (ES6)
+
+  ```javascript
+  for (variable of iterable) {
+      //실행 code
+  }
+  
+  let language = "Javascript";
+  let text = "";
+  
+  for (let x of language) {
+      text += x;
+      console.log(x);
+  }
+  ```
+
+
+
+#### While 반복문
+
+- 조건문이 참일 때 코드블록을 계속해서 반복 수행 
+
+- 무한루프 등 수행시 자주 사용
+
+- 조건문을 코드 블록보다 아래로 옮긴 __do..while__반복문도 존재(최소 한번 수행이 필요할 때)
+
+  ```javascript
+  while (조건문) {
+      //실행 code
+  }
+  
+  do {
+      //실행 code
+  } while (조건문) ;
+  ```
+
+  
+
+#### 반복문 제어
+
+- __break__ : 반복문 수행 시 코드 블록을 탈출할 때 사용되는 식별자
+  - 다중 반복일 경우 가장 안쪽의 반복문을 종료
+  - label을 통하여 다중 반복문을 한번에 종료 가능
+- __continue__ : 반복문 수행 시 코드블록 실행을 해당 라인에서 중지, 블록 코드 종료시킨 후 반복문 내 명시된 조건 판단
+
+---
+
+
+
+### 8. 함수
+
+#### 함수란?
+
+- 다수의 명령문을 코드블록으로 감싸고, 하나의 실행단위로 만든 코드 집합
+- 유사한 동작을 하는 코드를 하나로 묶어 __범용성 확대__
+- 정의 부분 / 호출 부분으로 구성
+- 가급적 1가지 일만 수행, 매개변수는 최대 3개 이내 권장
+
+``` javascript
+//ex )
+
+function add(x,y) { //함수이름(매개변수)
+    return x + y ; //반환 결과
+}
+
+add(10, 20); //10,20:인자 / 전체 -> 함수호출
+```
+
+
+
+#### 함수 정의
+
+1. 함수 선언식 (Declarations)
+
+   ```javascript
+   function add(x, y) {
+       return x + y ;
+   }
+   ```
+
+2. 함수 표현식 (Expressions)
+
+   ```javascript
+   const add = function (x,y) {
+       return x+y;
+   }
+   ```
+
+3. 화살표 함수 (Arrow Function)
+
+   ```javascript
+   const add = (x,y) => x+y;
+   ```
+
+
+
+#### 함수 호출
+
+- 자바스크립트 함수는 매개변수와 인수의 개수가 일치하는지 확인하지 않음
+- undefined 변수가 들어올 경우 값 초기화 지정 가능
