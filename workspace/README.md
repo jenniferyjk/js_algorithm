@@ -1,4 +1,4 @@
-# javascript_algorithm (기본문법)
+# javascript_기본
 
 
 
@@ -11,6 +11,29 @@
 - 키워드 : let
   - let 변수이름 = 값 ;
   - 변수에 새로운 값을 할당하여도 __메모리주소__는 변경되지 않음
+
+```javascript
+// 추천
+//선언과 동시에 할당
+const lang = 'JavaScript' //-> const 사용 권장
+
+// 변수 선언 -> var , let , const 사용
+let lang;
+
+// 할당
+lang = 'JS'
+
+// 재할당
+lang = 'javascript'
+
+// 선언과 동시에 할당
+let lang = 'JavaScript';
+
+// 재할당
+lang = 'JS'
+```
+
+
 
 #### 상수란?
 
@@ -37,12 +60,16 @@
 #### 자료형의 종류
 
 - Boolean : 논리적 값 - true , false
+
 - null : 존재하지 않거나 유효하지 않은 주소 표시
   - 값이 비어있다는 의미로 표현되는 자료형 (nothing, empty, unknown)
+  
 - undefined : 선언 후 값을 할당하지 않은 변수
+
 - number : 정수, 실수 등의 숫자 (정수의 한계는 +/- 2^53)
   - int, float, Infinity, -Infinity, NaN(Not a Number)
-
+  - isNaN() <-을 통해 숫자인지 판별 가능
+  
 - string : 빈 문자열 또는 글자들을 표현하는 문자열
 
   - 큰따옴표, 작은따옴표, __역따옴표(백틱)__ 사용하여 표현
@@ -68,7 +95,25 @@
     user.name //형태로 접근
     ```
 
+###### [220210]
 
+- 기본타입 : number, string, boolean 등..
+
+- **객체타입** 자료형: 파이썬의 딕셔너리, 배열 등...
+
+  ```javascript
+  const obj = {
+      name : 'kim',
+  };
+  
+  const arr = ['kim']
+  
+  function func() {
+      return 'kim'
+  }
+  ```
+
+  
 
 
 
@@ -440,6 +485,8 @@ add(10, 20); //10,20:인자 / 전체 -> 함수호출
 
 #### 함수 정의
 
+- return 이후의 코드는 실행되지 않음(함수 내에서)
+
 1. 함수 선언식 (Declarations)
 
    ```javascript
@@ -468,3 +515,185 @@ add(10, 20); //10,20:인자 / 전체 -> 함수호출
 
 - 자바스크립트 함수는 매개변수와 인수의 개수가 일치하는지 확인하지 않음
 - undefined 변수가 들어올 경우 값 초기화 지정 가능
+
+
+
+#### 재귀함수
+
+
+
+#### 콜백 함수
+
+- 콜백함수 : 다른 함수의 매개변수로 전달되어 수행 되어지는 함수
+- 고차 함수(higher-order function) : 매개변수를 통해 함수를 받아 호출하는 함수
+
+
+
+#### 메서드(method)
+
+- 객체에 저장된 값이 __함수__인 경우 이를 메서드 라고 부름
+
+- __this__ : 메서드(함수)에서 객체 내부의 속성(property)값에 접근할 수 있도록 하는 지시자
+
+  ``` javascript
+  let obj = {
+      name : "peter",
+      age : 18,
+      hello_func() {
+          console.log("hello"+this.name)
+      },
+  };
+  ```
+
+  
+
+---
+
+
+
+### 9. 자료형 심화
+
+#### Number
+
+- 자바스크립트 : 64비트 형식, IEEE-754 표준 기반 형태로 저장
+
+- 10진수, 16진수, 8진수, 2진수 등 사용
+
+- 대표 메서드
+
+  - 문자열로 변환 : Number.toString();
+
+    ```javascript
+    let us = 1e-6;
+    
+    us.toString();
+    String(us);
+    console.log((us + ""));
+    
+    //세가지 방법을 통해 문자열로 형 변환
+    ```
+
+  - 특정 자리수까지 제한 : Number.toFixed(), Number.toPrecision();
+
+    ```javascript
+    let num1 = 125.0;
+    let num2 = 123.456;
+    
+    //toFixed();는 소수의 자리수 길이를 제한
+    console.log(num1-num2).toFixed(3); // output : 1.544
+    
+    //toPrecision();은 정수와 소수의 자리 수를 합한 길이로 제한
+    console.log(num1-num2).toPrecision(3); // output : 1.54
+    ```
+
+  - 정수와 실수 형 변환
+
+    ``` javascript
+    console.log(Number.parseInt("125px")); //output : 125
+    console.log(Number.parseFloat("1.25cm")) //output : 1.25
+    ```
+
+  - 타입 확인 : Number.isNan(), Number.isFinite();
+
+- 지수표기법
+
+  ```javascript
+  let billion_1 = 1000000000; //10억
+  let billion_2 = 1e9; // 1 + 0이 9개
+  let us = 1e -6 // 왼쪽으로 6번 소수점 이동 0.000001
+  ```
+
+- 진법 표기
+
+  ```javascript
+  // 0x~(16진수), 0o~(8진수), 0b(2진수)로 N진수 표기 가능
+  
+  let hex = 0x0f;
+  let oct = 0o17;
+  let bin = 0b1111;
+  
+  //모두 각자 진수로 표현된 15라는 값임
+  ```
+
+
+
+#### String
+
+- 자바스크립트 : char 자료형 없음, UTF-16형식 따름(페이지 인코딩과 상관 없음)
+
+- 문자열 내 줄바꿈
+
+  ```javascript
+  console.log("line\nfeed"); // \n <-개행문자
+  console.log("line\rfeed"); // \r 도 개행문자로 활용가능
+  
+  // \표현은 \\로
+  console.log("line\\feed");
+  
+  // \t <-tab 효과
+  console.log("line\tfeed");
+  
+  // unicode표현
+  console.log("line\u{1F60D}feed");
+  
+  ```
+
+- 대표 속성과 메서드
+
+  - 문자열 길이: String.length
+
+    ```javascript
+    let str = `hello\n world \n!!!`
+    console.log(str.length); //15
+    ```
+
+  - 문자열 내 개별 문자 접근
+
+    ```javascript
+    let str = "hello, world !!!"
+    
+    //String.charAt(index)
+    console.log(str.charAt(1)); //output : e
+    
+    //String.charCodeAt(index) -> 아스키코드 출력
+    console.log(str.charCodeAt(1)) //output : 101
+    
+    //String[index] **
+    console.log(str[0]); //output : h
+    ```
+
+  - 문자열 검색
+
+    ```javascript
+    let text = "hello, world!!!";
+    
+    // index 검색
+    console.log(text.indexOf("o"));
+    console.log(text.indexOf("o",3)); //3번 인덱스부터 탐색(시작위치 지정)
+    console.log(text.lastIndexOf("o")); //맨 뒤부터 인덱스 찾기
+    
+    // boolean (true/false)
+    console.log(text.includes("hello")); //true
+    console.log(text.includes("Hello")); //false(대소문자 구분O)
+    console.log(text.startsWith("ello")); // false -> 있으나 맨~~ 앞이 시작되지 않게 때문
+    console.log(text.startsWith("ello",1)); //true -> 시작위치 지정 가능
+    console.log(text.endsWith("!!!")); // true
+    console.log(text.endsWith("world")); //false
+    
+    ```
+
+  - 대소문자 변환
+
+    ```javascript
+    let str = "Hello!";
+    
+    console.log(str.toUpperCase()); //대문자로
+    console.log(str.toLowerCase()); //소문자로
+    ```
+
+
+
+#### 문자열 변환
+
+
+
